@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class CircleArrayQueueDemo {
     public static void main(String[] args) {
 //创建一个队列
-        CircleArrayQueue queue = new CircleArrayQueue(3);
+        CircleArrayQueue queue = new CircleArrayQueue(5); // 设置3，说明队列的有效数据最大是2
         char key = ' '; //接收用户输入
         Scanner scanner = new Scanner(System.in);//
         boolean loop = true;

@@ -9,12 +9,12 @@ public class CircleArrayQueue {
 
     private int front;
 
-    private int rear;
+    private int rear; // 队列尾部不存储数据
 
     private int[] arr;
 
     public CircleArrayQueue(int maxSize) {
-        this.maxSize = maxSize;
+        this.maxSize = maxSize; // 队列的有效数据最大是maxSize - 1
         arr = new int[maxSize];
     }
 
@@ -75,9 +75,9 @@ public class CircleArrayQueue {
 
     // 求出当前队列有效数据的个数
     public int size() {
-        // rear = 2
-        // front = 1
-        // maxSize = 3
+        // rear = 1
+        // front = 2
+        // maxSize = 5
         return (rear + maxSize - front) % maxSize;
     }
 
