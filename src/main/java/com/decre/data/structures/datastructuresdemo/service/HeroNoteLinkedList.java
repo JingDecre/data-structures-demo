@@ -1,6 +1,9 @@
 package com.decre.data.structures.datastructuresdemo.service;
 
 import com.decre.data.structures.datastructuresdemo.entity.HeroNote;
+import lombok.Data;
+
+import java.util.Stack;
 
 /**
  * @className: HeroNoteLinkedList
@@ -8,6 +11,7 @@ import com.decre.data.structures.datastructuresdemo.entity.HeroNote;
  * @author: decre
  * @date: 2021/1/5
  **/
+@Data
 public class HeroNoteLinkedList {
 
     private HeroNote head;
@@ -114,4 +118,107 @@ public class HeroNoteLinkedList {
             System.out.printf("序号[%d]英雄名字：%s, 昵称：%s\n", temp.getNo(), temp.getName(), temp.getNickName());
         }
     }
+
+    /**
+     * 获取链表有效数量
+     *
+     * @return
+     */
+    public int getLength() {
+        HeroNote temp = head;
+        int length = 0;
+        while (temp.getNext() != null) {
+            length++;
+            temp = temp.getNext();
+        }
+        return length;
+    }
+
+    /**
+     * 获取倒数第index节点数据
+     *
+     * @param index
+     * @return
+     */
+    public HeroNote findLastIndexNote(int index) {
+        int length = getLength();
+        // 当传入的下标越界返回空
+        if (length <= 0 || index > length) {
+            return null;
+        }
+        HeroNote result = head;
+        int endIndex = length - index + 1;
+        int tempIndex = 0;
+        while (result.getNext() != null) {
+            tempIndex++;
+            result = result.getNext();
+            if (tempIndex >= endIndex) {
+                break;
+            }
+        }
+        return result;
+
+    }
+
+    /**
+     * 链表反转
+     */
+    public void reverse() {
+        if (head.getNext() == null || head.getNext().getNext() == null) {
+            return;
+        }
+        HeroNote cur = head.getNext();
+        HeroNote reverseNote = new HeroNote(0, "", "");
+        HeroNote next = null;
+        while (cur != null) {
+            next = cur.getNext();
+            cur.setNext(reverseNote.getNext());
+            reverseNote.setNext(cur);
+            cur = next;
+        }
+        head.setNext(reverseNote.getNext());
+
+    }
+
+    /**
+     * 使用stack倒叙输出
+     */
+    public void reversePrint() {
+        if (head.getNext() == null) {
+            return;
+        }
+        Stack<HeroNote> stack = new Stack<>();
+        HeroNote temp = head.getNext();
+        while (temp != null) {
+            stack.push(temp);
+            temp = temp.getNext();
+        }
+        while (!stack.empty())  {
+            System.out.println(stack.pop());
+        }
+
+    }
+
+    /**
+     * 两个链表合并
+     *
+     * @param heroNoteLinkedList
+     * @return
+     */
+    public void addAll(HeroNoteLinkedList heroNoteLinkedList) {
+        HeroNote temp = heroNoteLinkedList.getHead();
+        if (temp.getNext() == null) {
+            return;
+        }
+        HeroNote cur = temp.getNext();
+        HeroNote next = null;
+        while (cur != null) {
+            next = cur.getNext();
+            cur.setNext(null);
+            this.addNote(cur);
+            cur = next;
+        }
+
+    }
+
 }

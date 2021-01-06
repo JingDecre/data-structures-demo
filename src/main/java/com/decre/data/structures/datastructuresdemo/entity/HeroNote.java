@@ -25,4 +25,12 @@ public class HeroNote {
         this.nickName = nickName;
     }
 
+    @Override
+    public String toString() {
+        return "HeroNote{" +
+                "no=" + no +
+                ", name='" + name + '\'' +
+                ", nickName='" + nickName + '\'' +
+                '}';
+    }
 }
