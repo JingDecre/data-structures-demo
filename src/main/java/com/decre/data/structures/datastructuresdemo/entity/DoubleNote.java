@@ -1,5 +1,8 @@
 package com.decre.data.structures.datastructuresdemo.entity;
 
+import lombok.Data;
+
+@Data
 public class DoubleNote {
 
     private String name;
@@ -12,7 +15,7 @@ public class DoubleNote {
 
     public DoubleNote next;
 
-    public DoubleNote(String name, String nickName, int no) {
+    public DoubleNote(int no, String name, String nickName) {
         this.name = name;
         this.nickName = nickName;
         this.no = no;
