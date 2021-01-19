@@ -1,7 +1,7 @@
-package com.decre.data.structures.datastructuresdemo.test;
+package com.decre.data.structures.datastructuresdemo.test.linkedlist;
 
-import com.decre.data.structures.datastructuresdemo.entity.HeroNote;
-import com.decre.data.structures.datastructuresdemo.service.HeroNoteLinkedList;
+import com.decre.data.structures.datastructuresdemo.entity.linkedlist.HeroNote;
+import com.decre.data.structures.datastructuresdemo.service.linkedlist.HeroNoteLinkedList;
 
 /**
  * @className: HeroNoteLinkedListDemo

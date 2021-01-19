@@ -1,4 +1,4 @@
-package com.decre.data.structures.datastructuresdemo.test;
+package com.decre.data.structures.datastructuresdemo.test.array;
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;

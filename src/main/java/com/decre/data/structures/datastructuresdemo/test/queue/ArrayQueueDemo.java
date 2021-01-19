@@ -1,6 +1,6 @@
-package com.decre.data.structures.datastructuresdemo.test;
+package com.decre.data.structures.datastructuresdemo.test.queue;
 
-import com.decre.data.structures.datastructuresdemo.entity.ArrayQueue;
+import com.decre.data.structures.datastructuresdemo.entity.queue.ArrayQueue;
 
 import java.util.Scanner;
 

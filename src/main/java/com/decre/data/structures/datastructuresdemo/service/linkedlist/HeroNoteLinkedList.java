@@ -1,6 +1,6 @@
-package com.decre.data.structures.datastructuresdemo.service;
+package com.decre.data.structures.datastructuresdemo.service.linkedlist;
 
-import com.decre.data.structures.datastructuresdemo.entity.HeroNote;
+import com.decre.data.structures.datastructuresdemo.entity.linkedlist.HeroNote;
 import lombok.Data;
 
 import java.util.Stack;

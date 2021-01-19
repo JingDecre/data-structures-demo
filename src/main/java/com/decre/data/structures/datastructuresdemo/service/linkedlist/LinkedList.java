@@ -1,4 +1,4 @@
-package com.decre.data.structures.datastructuresdemo.service;
+package com.decre.data.structures.datastructuresdemo.service.linkedlist;
 
 /**
  * 节点接口

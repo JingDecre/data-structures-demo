@@ -1,6 +1,6 @@
-package com.decre.data.structures.datastructuresdemo.service;
+package com.decre.data.structures.datastructuresdemo.service.linkedlist;
 
-import com.decre.data.structures.datastructuresdemo.entity.DoubleNote;
+import com.decre.data.structures.datastructuresdemo.entity.linkedlist.DoubleNote;
 
 /**
  * @className: DoubleNoteLinkedList

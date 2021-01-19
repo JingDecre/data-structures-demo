@@ -1,6 +1,6 @@
-package com.decre.data.structures.datastructuresdemo.test;
+package com.decre.data.structures.datastructuresdemo.test.linkedlist;
 
-import com.decre.data.structures.datastructuresdemo.service.JosephuLinkedList;
+import com.decre.data.structures.datastructuresdemo.service.linkedlist.JosephuLinkedList;
 
 /**
  * @className: JosephuLinkedListDemo

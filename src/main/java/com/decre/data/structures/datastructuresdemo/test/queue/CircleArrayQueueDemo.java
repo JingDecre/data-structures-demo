@@ -1,7 +1,6 @@
-package com.decre.data.structures.datastructuresdemo.test;
+package com.decre.data.structures.datastructuresdemo.test.queue;
 
-import com.decre.data.structures.datastructuresdemo.entity.ArrayQueue;
-import com.decre.data.structures.datastructuresdemo.entity.CircleArrayQueue;
+import com.decre.data.structures.datastructuresdemo.entity.queue.CircleArrayQueue;
 
 import java.util.Scanner;
 

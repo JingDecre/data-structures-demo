@@ -1,4 +1,4 @@
-package com.decre.data.structures.datastructuresdemo.entity;
+package com.decre.data.structures.datastructuresdemo.entity.queue;
 
 import lombok.Data;
 

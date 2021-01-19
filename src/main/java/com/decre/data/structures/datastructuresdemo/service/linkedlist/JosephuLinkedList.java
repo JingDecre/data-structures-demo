@@ -1,6 +1,6 @@
-package com.decre.data.structures.datastructuresdemo.service;
+package com.decre.data.structures.datastructuresdemo.service.linkedlist;
 
-import com.decre.data.structures.datastructuresdemo.entity.JosephuNote;
+import com.decre.data.structures.datastructuresdemo.entity.linkedlist.JosephuNote;
 import lombok.Data;
 
 import java.util.concurrent.atomic.AtomicReference;
