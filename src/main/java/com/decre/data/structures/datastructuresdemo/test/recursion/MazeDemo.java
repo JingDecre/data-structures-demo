@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
  * @author: decre
  * @date: 2021/1/26
  **/
-public class Maze {
+public class MazeDemo {
 
     public static void main(String[] args) {
         int[][] map = new int[8][7];
