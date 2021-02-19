@@ -5,16 +5,17 @@ import java.util.stream.IntStream;
 
 /**
  * @Author: Liaofuan
- * @Description: 选择排序
- * @Date: Created at 下午 02:00:40 2021年2月19日 0019
+ * @Description: 插入排序
+ * @Date: Created at 下午 02:54:47 2021年2月19日 0019
  * @Modified by:
  */
-public class SelectSort {
+public class InsertionSort {
+
     private int maxSize;
 
     private int[] arr;
 
-    public SelectSort(int maxSize) {
+    public InsertionSort(int maxSize) {
         this.maxSize = maxSize;
         arr = new int[maxSize];
     }
@@ -26,33 +27,29 @@ public class SelectSort {
         IntStream.range(0, maxSize).forEach(i -> arr[i] = (int) (Math.random() * maxSize));
     }
 
-
     /**
-     * 选择排序
+     * 插入排序
      */
     public void sort() {
         long start = System.currentTimeMillis();
         System.out.println("Select sort start:" + start);
-        for (int i = 0; i < maxSize - 1; i++) {
-            int minIndex = i;
-            int min = arr[i];
-            for (int j = i + 1; j < maxSize; j++) {
-                if (arr[j] < min) {
-                    minIndex = j;
-                    min = arr[j];
-                }
+        for (int i = 1; i < maxSize; i++) {
+            int insertIndex = i - 1;
+            int insertVal = arr[i];
+            // 找到最小值该插入的下标位置
+            while (insertIndex >= 0 && insertVal < arr[insertIndex]) {
+                arr[insertIndex + 1] = arr[insertIndex];
+                insertIndex--;
             }
-            // 下标不等，说明有进行过交换
-            if (minIndex != i) {
-                arr[minIndex] = arr[i];
-                arr[i] = min;
+            // 插入数据
+            if (insertIndex + 1 != i) {
+                arr[insertIndex + 1] = insertVal;
             }
         }
-
         long end = System.currentTimeMillis();
         System.out.println("Select sort end:" + start + ", the time difference: " + (end - start) + " ms");
-
     }
+
 
     /**
      * 打印数组

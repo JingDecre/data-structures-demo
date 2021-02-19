@@ -3,14 +3,11 @@ package com.decre.data.structures.datastructuresdemo.service.sort;
 import lombok.Data;
 
 import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 /**
  * @Author: Liaofuan
- * @Description:
+ * @Description: 冒泡排序
  * @Date: Created at 下午 04:35:11 2021年2月18日 0018
  * @Modified by:
  */
