@@ -37,6 +37,8 @@ public class BubbleSort {
      * 冒泡排序
      */
     public void sort() {
+        long start = System.currentTimeMillis();
+        System.out.println("Bubble start timestamp:" + start);
         Boolean flag = Boolean.FALSE;
         int temp;
         for (int i = 0; i < maxSize - 1; i++) {
@@ -55,6 +57,8 @@ public class BubbleSort {
                 flag = false;
             }
         }
+        long end = System.currentTimeMillis();
+        System.out.println("Bubble end timestamp:" + end + ", the time difference: " + (end - start) + "ms");
     }
 
     /**
