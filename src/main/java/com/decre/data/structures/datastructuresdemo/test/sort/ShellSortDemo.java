@@ -14,7 +14,7 @@ public class ShellSortDemo {
         ShellSort shellSort = new ShellSort(30);
         shellSort.randomInit();
         // 交换排序
-//        shellSort.exchangeSort();
+        // shellSort.exchangeSort();
         // 位移排序
         shellSort.displacementSort();
         shellSort.printList();
