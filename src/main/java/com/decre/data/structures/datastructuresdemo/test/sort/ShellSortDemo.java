@@ -11,7 +11,7 @@ import com.decre.data.structures.datastructuresdemo.service.sort.ShellSort;
 public class ShellSortDemo {
 
     public static void main(String[] args) {
-        ShellSort shellSort = new ShellSort(30);
+        ShellSort shellSort = new ShellSort(80000);
         shellSort.randomInit();
         // 交换排序
         // shellSort.exchangeSort();
