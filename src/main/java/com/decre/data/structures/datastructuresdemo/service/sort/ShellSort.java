@@ -11,33 +11,17 @@ import java.util.stream.IntStream;
  */
 public class ShellSort {
 
-    private int maxSize;
-
-    private int[] arr;
-
-    public ShellSort(int maxSize) {
-        this.maxSize = maxSize;
-        arr = new int[maxSize];
-    }
-
-    /**
-     * 随机初始化数据
-     */
-    public void randomInit() {
-        IntStream.range(0, maxSize).forEach(i -> arr[i] = (int) (Math.random() * maxSize));
-    }
-
     /**
      * 交换法希尔排序
      */
-    public void exchangeSort() {
+    public void exchangeSort(int[] arr) {
 //        int count = 0;
         long start = System.currentTimeMillis();
         System.out.println("Select sort start:" + start);
         // 分组
-        for (int gap = maxSize / 2; gap > 0; gap /= 2) {
+        for (int gap = arr.length / 2; gap > 0; gap /= 2) {
             // 遍历组
-            for (int i = gap; i < maxSize; i++) {
+            for (int i = gap; i < arr.length; i++) {
                 // 遍历组中的元素,gap为步长
                 for (int j = i - gap; j >= 0; j -= gap) {
                     if (arr[j] > arr[j + gap]) {
@@ -59,14 +43,14 @@ public class ShellSort {
      * 位移法希尔排序
      *
      */
-    public void displacementSort() {
+    public void displacementSort(int[] arr) {
 //        int count = 0;
         long start = System.currentTimeMillis();
         System.out.println("Select sort start:" + start);
         // 分组
-        for (int gap = maxSize / 2; gap > 0; gap /= 2) {
+        for (int gap = arr.length / 2; gap > 0; gap /= 2) {
             // 遍历组
-            for (int i = gap; i < maxSize; i++) {
+            for (int i = gap; i < arr.length; i++) {
                 int j = i;
                 int temp = arr[j];
                 if (arr[j] < arr[j - gap]) {
@@ -86,7 +70,7 @@ public class ShellSort {
     /**
      * 打印数组
      */
-    public void printList() {
+    public void printList(int[] arr) {
         Arrays.stream(arr).forEach(i -> System.out.print(" " + i));
         System.out.println();
     }

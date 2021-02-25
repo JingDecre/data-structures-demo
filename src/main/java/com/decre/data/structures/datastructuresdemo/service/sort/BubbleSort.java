@@ -3,7 +3,6 @@ package com.decre.data.structures.datastructuresdemo.service.sort;
 import lombok.Data;
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
 
 /**
  * @Author: Liaofuan
@@ -14,32 +13,16 @@ import java.util.stream.IntStream;
 @Data
 public class BubbleSort {
 
-    private int maxSize;
-
-    private int[] arr;
-
-    public BubbleSort(int maxSize) {
-        this.maxSize = maxSize;
-        arr = new int[maxSize];
-    }
-
-    /**
-     * 随机初始化数据
-     */
-    public void randomInit() {
-        IntStream.range(0, maxSize).forEach(i -> arr[i] = (int) (Math.random() * maxSize));
-    }
-
     /**
      * 冒泡排序
      */
-    public void sort() {
+    public void sort(int[] arr) {
         long start = System.currentTimeMillis();
         System.out.println("Bubble start timestamp:" + start);
         Boolean flag = Boolean.FALSE;
         int temp;
-        for (int i = 0; i < maxSize - 1; i++) {
-            for (int j = 0; j < maxSize -1 -i; j++) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length -1 -i; j++) {
                 if (arr[j] > arr[j+1]) {
                     flag = Boolean.TRUE;
                     temp = arr[j];
@@ -62,7 +45,7 @@ public class BubbleSort {
      * 打印数组
      *
      */
-    public void printList() {
+    public void printList(int[] arr) {
         Arrays.stream(arr).forEach(i -> System.out.print(" " + i));
         System.out.println();
     }

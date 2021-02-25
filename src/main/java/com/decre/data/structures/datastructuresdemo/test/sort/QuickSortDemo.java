@@ -1,6 +1,7 @@
 package com.decre.data.structures.datastructuresdemo.test.sort;
 
 import com.decre.data.structures.datastructuresdemo.service.sort.QuickSort;
+import com.decre.data.structures.datastructuresdemo.util.ArrayUtils;
 
 /**
  * @Author: Liaofuan
@@ -11,8 +12,8 @@ import com.decre.data.structures.datastructuresdemo.service.sort.QuickSort;
 public class QuickSortDemo {
 
     public static void main(String[] args) {
-        QuickSort quickSort = new QuickSort(8000000);
-        quickSort.randomInit();
-        quickSort.sort();
+        QuickSort sort = new QuickSort();
+        int[] arr = ArrayUtils.randomInit(8000000);
+        sort.sort(arr);
     }
 }

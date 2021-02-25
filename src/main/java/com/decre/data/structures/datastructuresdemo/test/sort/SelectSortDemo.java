@@ -1,6 +1,7 @@
 package com.decre.data.structures.datastructuresdemo.test.sort;
 
 import com.decre.data.structures.datastructuresdemo.service.sort.SelectSort;
+import com.decre.data.structures.datastructuresdemo.util.ArrayUtils;
 
 /**
  * @Author: Liaofuan
@@ -11,10 +12,9 @@ import com.decre.data.structures.datastructuresdemo.service.sort.SelectSort;
 public class SelectSortDemo {
 
     public static void main(String[] args) {
-        SelectSort selectSort = new SelectSort(30000);
-        selectSort.randomInit();
-        selectSort.sort();
-        selectSort.printList();
-
+        SelectSort sort = new SelectSort();
+        int[] arr = ArrayUtils.randomInit(30000);
+        sort.sort(arr);
+        sort.printList(arr);
     }
 }

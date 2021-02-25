@@ -11,29 +11,13 @@ import java.util.stream.IntStream;
  */
 public class QuickSort {
 
-    private int maxSize;
-
-    private int[] arr;
-
-    public QuickSort(int maxSize) {
-        this.maxSize = maxSize;
-        arr = new int[maxSize];
-    }
-
-    /**
-     * 随机初始化数据
-     */
-    public void randomInit() {
-        IntStream.range(0, maxSize).forEach(i -> arr[i] = (int) (Math.random() * maxSize));
-    }
-
     /**
      * 开始排序
      */
-    public void sort() {
+    public void sort(int[] arr) {
         long start = System.currentTimeMillis();
         System.out.println("Select sort start:" + start);
-        quickSort(0, arr.length - 1);
+        quickSort(arr, 0, arr.length - 1);
         long end = System.currentTimeMillis();
         System.out.println("Select sort end:" + start + ", the time difference: " + (end - start) + " ms");
     }
@@ -44,7 +28,7 @@ public class QuickSort {
      * @param left
      * @param right
      */
-    private void quickSort(int left, int right) {
+    private void quickSort(int[] arr, int left, int right) {
         int l = left;
         int r = right;
         // 中轴值
@@ -83,19 +67,18 @@ public class QuickSort {
         }
         // 向左递归
         if (left < r) {
-            quickSort(left, r);
+            quickSort(arr, left, r);
         }
         // 向右递归
         if (l < right) {
-            quickSort(l, right);
+            quickSort(arr, l, right);
         }
     }
 
     /**
      * 打印数组
-     *
      */
-    public void printList() {
+    public void printList(int[] arr) {
         Arrays.stream(arr).forEach(i -> System.out.print(" " + i));
         System.out.println();
     }

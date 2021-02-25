@@ -1,6 +1,7 @@
 package com.decre.data.structures.datastructuresdemo.test.sort;
 
 import com.decre.data.structures.datastructuresdemo.service.sort.MergeSort;
+import com.decre.data.structures.datastructuresdemo.util.ArrayUtils;
 
 /**
  * @Author: Liaofuan
@@ -11,9 +12,9 @@ import com.decre.data.structures.datastructuresdemo.service.sort.MergeSort;
 public class MergeSortDemo {
 
     public static void main(String[] args) {
-        MergeSort mergeSort = new MergeSort(8000000);
-        mergeSort.randomInit();
-        mergeSort.sort();
-        //mergeSort.printList();
+        MergeSort sort = new MergeSort();
+        int[] arr = ArrayUtils.randomInit(8000000);
+        sort.sort(arr);
+        //sort.printList();
     }
 }

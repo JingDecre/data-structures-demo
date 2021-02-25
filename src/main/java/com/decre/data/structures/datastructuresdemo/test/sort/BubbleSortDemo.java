@@ -1,6 +1,7 @@
 package com.decre.data.structures.datastructuresdemo.test.sort;
 
 import com.decre.data.structures.datastructuresdemo.service.sort.BubbleSort;
+import com.decre.data.structures.datastructuresdemo.util.ArrayUtils;
 
 /**
  * @Author: Liaofuan
@@ -10,9 +11,9 @@ import com.decre.data.structures.datastructuresdemo.service.sort.BubbleSort;
  */
 public class BubbleSortDemo {
     public static void main(String[] args) {
-        BubbleSort bubbleSort = new BubbleSort(30000);
-        bubbleSort.randomInit();
-        bubbleSort.sort();
-        bubbleSort.printList();
+        BubbleSort sort = new BubbleSort();
+        int[] arr = ArrayUtils.randomInit(30000);
+        sort.sort(arr);
+        sort.printList(arr);
     }
 }
