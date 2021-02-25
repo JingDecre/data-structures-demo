@@ -13,7 +13,8 @@ public class QuickSortDemo {
 
     public static void main(String[] args) {
         QuickSort sort = new QuickSort();
-        int[] arr = ArrayUtils.randomInit(8000000);
+//        int[] arr = ArrayUtils.randomInit(8000000);
+        int[] arr = new int[]{5,2,2,3,2,1};
         sort.sort(arr);
     }
 }
