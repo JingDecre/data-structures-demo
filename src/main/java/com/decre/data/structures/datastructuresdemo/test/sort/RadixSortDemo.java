@@ -1,6 +1,7 @@
 package com.decre.data.structures.datastructuresdemo.test.sort;
 
 import com.decre.data.structures.datastructuresdemo.service.sort.RadixSort;
+import com.decre.data.structures.datastructuresdemo.util.ArrayUtils;
 
 /**
  * @Author: Liaofuan
@@ -11,8 +12,8 @@ import com.decre.data.structures.datastructuresdemo.service.sort.RadixSort;
 public class RadixSortDemo {
 
     public static void main(String[] args) {
-        RadixSort radixSort = new RadixSort(8000000);
-        radixSort.randomInit();
-        radixSort.sort();
+        RadixSort sort = new RadixSort();
+        int[] arr = ArrayUtils.randomInit(8000000);
+        sort.sort(arr);
     }
 }

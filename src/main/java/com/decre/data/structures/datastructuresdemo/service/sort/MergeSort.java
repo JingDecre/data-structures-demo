@@ -11,30 +11,14 @@ import java.util.stream.IntStream;
  */
 public class MergeSort {
 
-    private int maxSize;
-
-    private int[] arr;
-
-    public MergeSort(int maxSize) {
-        this.maxSize = maxSize;
-        arr = new int[maxSize];
-    }
-
-    /**
-     * 随机初始化数据
-     */
-    public void randomInit() {
-        IntStream.range(0, maxSize).forEach(i -> arr[i] = (int) (Math.random() * maxSize));
-    }
-
     /**
      * 开始排序
      */
-    public void sort() {
+    public void sort(int[] arr) {
         long start = System.currentTimeMillis();
         System.out.println("Select sort start:" + start);
-        int[] tempArr = new int[maxSize];
-        mergeSort(0, maxSize - 1, tempArr);
+        int[] tempArr = new int[arr.length];
+        mergeSort(arr,0, arr.length - 1, tempArr);
         long end = System.currentTimeMillis();
         System.out.println("Select sort end:" + start + ", the time difference: " + (end - start) + " ms");
     }
@@ -45,15 +29,15 @@ public class MergeSort {
      * @param left
      * @param right
      */
-    private void mergeSort(int left, int right, int[] tempArr) {
+    private void mergeSort(int[] arr,int left, int right, int[] tempArr) {
         if (left < right) {
             int mid = (left + right) / 2;
             // 向左递归
-            mergeSort(left, mid, tempArr);
+            mergeSort(arr, left, mid, tempArr);
             // 向右递归
-            mergeSort(mid + 1, right, tempArr);
+            mergeSort(arr,mid + 1, right, tempArr);
             // 合并左右已排列好的数据
-            merge(left, mid, right, tempArr);
+            merge(arr, left, mid, right, tempArr);
         }
 
     }
@@ -66,7 +50,7 @@ public class MergeSort {
      * @param right
      * @param tempArr
      */
-    private void merge(int left, int mid, int right, int[] tempArr) {
+    private void merge(int[] arr, int left, int mid, int right, int[] tempArr) {
         // 左侧起始下标
         int i = left;
         // 右侧起始下标
@@ -115,7 +99,7 @@ public class MergeSort {
     /**
      * 打印数组
      */
-    public void printList() {
+    public void printList(int[] arr) {
         Arrays.stream(arr).forEach(i -> System.out.print(" " + i));
         System.out.println();
     }

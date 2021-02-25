@@ -1,6 +1,7 @@
 package com.decre.data.structures.datastructuresdemo.test.sort;
 
 import com.decre.data.structures.datastructuresdemo.service.sort.ShellSort;
+import com.decre.data.structures.datastructuresdemo.util.ArrayUtils;
 
 /**
  * @Author: Liaofuan
@@ -11,13 +12,11 @@ import com.decre.data.structures.datastructuresdemo.service.sort.ShellSort;
 public class ShellSortDemo {
 
     public static void main(String[] args) {
-        ShellSort shellSort = new ShellSort(8000000);
-        shellSort.randomInit();
-        // 交换排序
-        // shellSort.exchangeSort();
-        // 位移排序
-        shellSort.displacementSort();
-       // shellSort.printList();
+        ShellSort sort = new ShellSort();
+        int[] arr = ArrayUtils.randomInit(30000);
+//        sort.exchangeSort(arr);
+        sort.displacementSort(arr);
+       // sort.printList();
 
     }
 }

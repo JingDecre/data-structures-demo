@@ -11,29 +11,13 @@ import java.util.stream.IntStream;
  */
 public class QuickSort {
 
-    private int maxSize;
-
-    private int[] arr;
-
-    public QuickSort(int maxSize) {
-        this.maxSize = maxSize;
-        arr = new int[maxSize];
-    }
-
-    /**
-     * 随机初始化数据
-     */
-    public void randomInit() {
-        IntStream.range(0, maxSize).forEach(i -> arr[i] = (int) (Math.random() * maxSize));
-    }
-
     /**
      * 开始排序
      */
-    public void sort() {
+    public void sort(int[] arr) {
         long start = System.currentTimeMillis();
         System.out.println("Select sort start:" + start);
-        quickSort(0, arr.length - 1);
+        quickSort(arr, 0, arr.length - 1);
         long end = System.currentTimeMillis();
         System.out.println("Select sort end:" + start + ", the time difference: " + (end - start) + " ms");
     }
@@ -44,7 +28,7 @@ public class QuickSort {
      * @param left
      * @param right
      */
-    private void quickSort(int left, int right) {
+    private void quickSort(int[] arr, int left, int right) {
         int l = left;
         int r = right;
         // 中轴值
@@ -64,16 +48,19 @@ public class QuickSort {
             if (l >= r) {
                 break;
             }
+            // 能被交换，说明 arr[l] >= pivot, arr[r] <= pivot
             temp = arr[l];
             arr[l] = arr[r];
             arr[r] = temp;
-            // 当等于中轴值时左下标加一
+            //如果交换完后，发现这个arr[l] == pivot值 相等 r--， 前移
             if (arr[l] == pivot) {
-                l++;
-            }
-            // 当等于中轴值时右下标减一
-            if (arr[r] == pivot) {
+                //!!!! 不是l++，而是r--
                 r--;
+            }
+            //如果交换完后，发现这个arr[r] == pivot值 相等 l++， 后移
+            if (arr[r] == pivot) {
+                //!!!! 不是r--，而是l++
+                l++;
             }
         }
         // 如果 l == r, 必须 l++, r--, 否则为出现栈溢出
@@ -83,19 +70,18 @@ public class QuickSort {
         }
         // 向左递归
         if (left < r) {
-            quickSort(left, r);
+            quickSort(arr, left, r);
         }
         // 向右递归
         if (l < right) {
-            quickSort(l, right);
+            quickSort(arr, l, right);
         }
     }
 
     /**
      * 打印数组
-     *
      */
-    public void printList() {
+    public void printList(int[] arr) {
         Arrays.stream(arr).forEach(i -> System.out.print(" " + i));
         System.out.println();
     }
