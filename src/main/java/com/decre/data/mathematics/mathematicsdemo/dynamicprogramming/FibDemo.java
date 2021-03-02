@@ -12,6 +12,7 @@ public class FibDemo {
         //System.out.println(fib1(45));
         System.out.println(fib2(30));
         System.out.println(fib3(30));
+        System.out.println(fib4(30));
 
     }
 
@@ -88,5 +89,23 @@ public class FibDemo {
         }
         System.out.printf("dp求解结果：%d,耗时: %d ms \n", dp[n], System.currentTimeMillis() - start);
         return dp[n];
+    }
+
+    /**
+     * 优化dp迭代解，降低空间复杂度
+     *
+     * @param n
+     * @return
+     */
+    private static long fib4(int n) {
+        long start = System.currentTimeMillis();
+        int pre = 1, last = 1;
+        for (int i = 3; i <= n; i++) {
+            int sum = pre + last;
+            pre = last;
+            last = sum;
+        }
+        System.out.printf("优化dp求解结果：%d,耗时: %d ms \n", last, System.currentTimeMillis() - start);
+        return last;
     }
 }
