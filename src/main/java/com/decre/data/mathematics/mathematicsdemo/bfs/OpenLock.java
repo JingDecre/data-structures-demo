@@ -11,12 +11,9 @@ import java.util.*;
 public class OpenLock {
 
     public static void main(String[] args) {
-        Set<String> deadEnds = new HashSet<>();
-        deadEnds.add("0201");
-        deadEnds.add("0101");
-        deadEnds.add("0102");
-        deadEnds.add("1212");
-        int step = openLock(deadEnds, "0000", "0109");
+        String[] deadends = {"8887","8889","8878","8898","8788","8988","7888","9888"};
+        HashSet<String> deadEnds = new HashSet<>(Arrays.asList(deadends));
+        int step = openLock(deadEnds, "0000", "8888");
         System.out.println();
         System.out.println("解锁的最小次数为：" + step);
 
@@ -46,6 +43,10 @@ public class OpenLock {
             for (int i = 0; i < size; i++) {
                 // 从队列中获取节点
                 temp = queue.poll();
+                // 跳过死亡节点
+                if (deadEnds.contains(temp)) {
+                    continue;
+                }
                 // 命中目标节点
                 if(target.equals(temp)) {
                     return step;
@@ -53,13 +54,13 @@ public class OpenLock {
                 // 遍历temp的所有临近的密码组合选择
                 for (int j = 0; j < passwordLength; j++) {
                     temp2 = plusOne(temp, j);
-                    // 将密码组合在死亡组合里面以及已经尝试过的组合进行跳过
-                    if (!deadEnds.contains(temp2) && !visited.contains(temp2)) {
+                    // 将已经尝试过的组合进行跳过
+                    if (!visited.contains(temp2)) {
                         queue.offer(temp2);
                         visited.add(temp2);
                     }
                     temp2 = minusOne(temp, j);
-                    if (!deadEnds.contains(temp2) && !visited.contains(temp2)) {
+                    if (!visited.contains(temp2)) {
                         queue.offer(temp2);
                         visited.add(temp2);
                     }
@@ -69,7 +70,7 @@ public class OpenLock {
             step++;
         }
 
-        return step;
+        return -1;
     }
 
     /**
