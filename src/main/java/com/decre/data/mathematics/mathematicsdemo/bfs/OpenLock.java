@@ -13,9 +13,11 @@ public class OpenLock {
     public static void main(String[] args) {
         String[] deadends = {"8887","8889","8878","8898","8788","8988","7888","9888"};
         HashSet<String> deadEnds = new HashSet<>(Arrays.asList(deadends));
-        int step = openLock(deadEnds, "0000", "8888");
+        int step1 = openLock(deadEnds, "0000", "3102");
+        int step2 = doubleDirOpenLock(deadEnds, "0000", "3102");
         System.out.println();
-        System.out.println("解锁的最小次数为：" + step);
+        System.out.println("单向解锁的最小次数为：" + step1);
+        System.out.println("双向解锁的最小次数为：" + step2);
 
     }
 
@@ -72,6 +74,62 @@ public class OpenLock {
 
         return -1;
     }
+
+    /**
+     * 计算从起点到终点，获取最短解锁的数字拨动路径
+     *
+     * @param deadEnds
+     * @param start
+     * @param target
+     * @return
+     */
+    private static int doubleDirOpenLock(Set<String> deadEnds, String start, String target) {
+        Set<String> startQueue = new HashSet<>();
+        Set<String> endQueue = new HashSet<>();
+        Set<String> visited = new HashSet<>();
+        // 将起点加入队列
+        int step = 0;
+        int passwordLength = target.length();
+        String temp;
+        startQueue.add(start);
+        endQueue.add(target);
+        Set<String> tempSet;
+        while (!startQueue.isEmpty() && !endQueue.isEmpty()) {
+            tempSet = new HashSet<>();
+            for (String password: startQueue) {
+                // 跳过死亡节点
+                if (deadEnds.contains(password)) {
+                    continue;
+                }
+                // 命中目标节点
+                if(endQueue.contains(password)) {
+                    return step;
+                }
+                visited.add(password);
+                // 遍历temp的所有临近的密码组合选择
+                for (int j = 0; j < passwordLength; j++) {
+                    temp = plusOne(password, j);
+                    // 将已经尝试过的组合进行跳过
+                    if (!visited.contains(temp)) {
+                        tempSet.add(temp);
+                    }
+                    temp = minusOne(password, j);
+                    if (!visited.contains(temp)) {
+                        tempSet.add(temp);
+                    }
+                }
+            }
+            // 步数+1
+            step++;
+            // tempSet相当于q1
+            // 交换startQueue endQueue， 下一轮while 就是扩散 endQueue
+            startQueue = endQueue;
+            endQueue = tempSet;
+        }
+
+        return -1;
+    }
+
 
     /**
      * 将s的第j为字符向上拨动一次
