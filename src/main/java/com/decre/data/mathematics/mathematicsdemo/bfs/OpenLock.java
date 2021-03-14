@@ -30,48 +30,44 @@ public class OpenLock {
      * @return
      */
     private static int openLock(Set<String> deadEnds, String start, String target) {
+        // 缓存需要遍历的密码组合，即取即删
         Queue<String> queue = new LinkedList<>();
+        // 已经遍历过的密码集合，减少重复遍历
         Set<String> visited = new HashSet<>();
-        // 将起点加入队列
-        queue.offer(start);
-        visited.add(start);
+        // 初始化步数
         int step = 0;
+        // 填充初始化数据
+        queue.offer(start);
+        // 密码长度，后续查找下一次密码校验使用
         int passwordLength = target.length();
         String temp;
         String temp2;
-
+        // 对队列进行遍历
         while (!queue.isEmpty()) {
             int size = queue.size();
-            for (int i = 0; i < size; i++) {
-                // 从队列中获取节点
+            for (int j = 0; j <size; j++) {
                 temp = queue.poll();
-                // 跳过死亡节点
+                // 死亡组合包含时跳过
                 if (deadEnds.contains(temp)) {
                     continue;
                 }
-                // 命中目标节点
-                if(target.equals(temp)) {
+                // 命中目标，返回结果
+                if (target.equals(temp)) {
                     return step;
                 }
-                // 遍历temp的所有临近的密码组合选择
-                for (int j = 0; j < passwordLength; j++) {
-                    temp2 = plusOne(temp, j);
-                    // 将已经尝试过的组合进行跳过
+                for (int i = 0; i < passwordLength; i++) {
+                    temp2 = plusOne(temp, i);
                     if (!visited.contains(temp2)) {
                         queue.offer(temp2);
-                        visited.add(temp2);
                     }
-                    temp2 = minusOne(temp, j);
+                    temp2 = minusOne(temp, i);
                     if (!visited.contains(temp2)) {
                         queue.offer(temp2);
-                        visited.add(temp2);
                     }
                 }
             }
-            // 步数+1
             step++;
         }
-
         return -1;
     }
 
