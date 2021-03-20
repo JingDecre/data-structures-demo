@@ -9,9 +9,13 @@ package com.decre.data.mathematics.mathematicsdemo.linkedlist;
 public class ReverseSingleLinkedList {
 
     public static void main(String[] args) {
-        ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-        ListNode resultNode = null;
-        ListNode reverse = reverseN(head, 3);
+        ListNode listNode5 = new ListNode(5);
+        ListNode listNode4 = new ListNode(4, listNode5);
+        ListNode listNode3 = new ListNode(3, listNode4);
+        ListNode listNode2 = new ListNode(2, listNode3);
+        ListNode listNode1 = new ListNode(1, listNode2);
+       // ListNode reverse = reverseRange(listNode2, listNode4);
+        ListNode reverse = reverseKGroup(listNode1, 2);
         System.out.println(reverse);
     }
 
@@ -60,15 +64,14 @@ public class ReverseSingleLinkedList {
      */
     private static ListNode reverseN(ListNode head, int n) {
         if (n == 1) {
-            // 记录第 n + 1 个节点
+            // 最后一个节点跟后驱节点successor建立联系
             successor = head.next;
             return head;
         }
-        // 反转的结果
         ListNode last = reverseN(head.next, n - 1);
-        // .next.next 先形成死循环
+        // 建立死循环
         head.next.next = head;
-        // .next 解开死循环
+        // 解开循环
         head.next = successor;
         return last;
 
@@ -89,5 +92,66 @@ public class ReverseSingleLinkedList {
         // 最终保留，5->4->null，实现反转
         head.next = null;
         return last;
+    }
+
+    // 反转以 a 为头结点的链表（普通反转）
+    private static ListNode reverse(ListNode a) {
+        ListNode pre, cur, next;
+        cur = a;
+        pre = null; next = a;
+        while (cur != null) {
+            next = cur.next;
+            // 逐个结点反转
+            cur.next = pre;
+            // 更新指针位置
+            pre = cur;
+            cur = next;
+        }
+        // 返回反转后的头结点
+        return pre;
+    }
+
+    /**
+     * 反转a到b区间的链表
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    private static ListNode reverseRange(ListNode a, ListNode b) {
+        ListNode pre, cur, next;
+        pre = null;
+        cur = a;
+        next = a;
+        while (cur != b) {
+            next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
+
+    /**
+     * k个一组反转
+     *
+     * @param head
+     * @param k
+     * @return
+     */
+    private static ListNode reverseKGroup(ListNode head, int k) {
+        if (head == null) return null;
+        ListNode a, b;
+        a = b = head;
+        for (int i = 0; i < k; i++) {
+            // 不足 k 个， 不需要反转， base core
+            if (b == null) return head;
+            b = b.next;
+        }
+        // 反转前 k 个元素
+        ListNode newHead = reverseRange(a, b);
+        // 递归反转后续链表并连接起来
+        a.next = reverseKGroup(b, k);
+        return newHead;
     }
 }
