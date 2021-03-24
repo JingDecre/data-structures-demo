@@ -31,7 +31,7 @@ public class NQueen {
     private static List<int[]> solveNQueens(int n) {
         List<int[]> list = new LinkedList<>();
         // 下标表示行，值表示列
-        int[] solveIndex = new int[8];
+        int[] solveIndex = new int[n];
         Arrays.fill(solveIndex, -1);
         // 用回溯法进行递归
         backtrack(list, solveIndex, 0);
@@ -40,7 +40,7 @@ public class NQueen {
 
     private static void backtrack(List<int[]> result, int[] queenSort, int n) {
         if (n == queenSort.length) {
-            result.add(Arrays.copyOf(queenSort, 8));
+            result.add(Arrays.copyOf(queenSort, n));
             return;
         }
         for (int i = 0; i < queenSort.length; i++) {
