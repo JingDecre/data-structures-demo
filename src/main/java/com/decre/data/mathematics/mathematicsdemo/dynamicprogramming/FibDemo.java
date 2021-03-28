@@ -25,9 +25,10 @@ public class FibDemo {
     private static long fib1(int n) {
         long start = System.currentTimeMillis();
         long result = calc1(n);
-        System.out.printf("暴力递归结果：%d,共花费：%d ms \n",result, System.currentTimeMillis() - start);
+        System.out.printf("暴力递归结果：%d,共花费：%d ms \n", result, System.currentTimeMillis() - start);
         return result;
     }
+
     /**
      * 暴力递归核心计算逻辑
      *
@@ -39,8 +40,7 @@ public class FibDemo {
         return calc1(i - 1) + calc1(i - 2);
 
     }
-    
-    
+
 
     /**
      * 带备忘录的递归
@@ -54,7 +54,7 @@ public class FibDemo {
         // 数组下标从0开始，所以多给一位空间
         long[] dictionary = new long[n + 1];
         long result = calc2(dictionary, n);
-        System.out.printf("备忘录递归结果：%d,共花费：%d ms \n",result, System.currentTimeMillis() - start);
+        System.out.printf("备忘录递归结果：%d,共花费：%d ms \n", result, System.currentTimeMillis() - start);
         return result;
     }
 
@@ -70,7 +70,7 @@ public class FibDemo {
             return 1;
         }
         if (dictionary[n] != 0) return dictionary[n];
-        dictionary[n] = calc2(dictionary, n -1) + calc2(dictionary, n -2);
+        dictionary[n] = calc2(dictionary, n - 1) + calc2(dictionary, n - 2);
         return dictionary[n];
     }
 
@@ -98,14 +98,15 @@ public class FibDemo {
      * @return
      */
     private static long fib4(int n) {
-        long start = System.currentTimeMillis();
-        int pre = 1, last = 1;
-        for (int i = 3; i <= n; i++) {
-            int sum = pre + last;
+        if (n < 0) return -1;
+        long pre = 0;
+        long last = 1;
+        long sum;
+        for (int i = 2; i <= n; i++) {
+            sum = pre + last;
             pre = last;
             last = sum;
         }
-        System.out.printf("优化dp求解结果：%d,耗时: %d ms \n", last, System.currentTimeMillis() - start);
         return last;
     }
 }

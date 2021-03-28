@@ -24,33 +24,29 @@ public class QuickSort {
     /**
      * 算法核心逻辑
      *
-     * @param nums 原始数组
-     * @param left 左边界
+     * @param nums  原始数组
+     * @param left  左边界
      * @param right 有边界
      */
     private static void sort(int[] nums, int left, int right) {
+        if (left > right) {
+            return;
+        }
         int l = left;
         int r = right;
-        // 中间值下标
         int middleIndex = left + (right - left) / 2;
-        // 中间值
         int middleVal = nums[middleIndex];
-        int temp;
         while (l < r) {
-            // 下标l仍然小于中间值说明不用交换
             while (nums[l] < middleVal) {
                 l++;
             }
             while (nums[r] > middleVal) {
                 r--;
             }
-            // l >= r 说明左右已经全部比较过了，故跳出循环
-            if (l >= r) {
+            if (r <= l) {
                 break;
             }
-
-            // 左右需要交换
-            temp = nums[l];
+            int temp = nums[l];
             nums[l] = nums[r];
             nums[r] = temp;
 
@@ -61,7 +57,7 @@ public class QuickSort {
                 l++;
             }
         }
-        // 避免死循环
+        // 防止死循环
         if (l == r) {
             l++;
             r--;
@@ -72,5 +68,6 @@ public class QuickSort {
         if (l < right) {
             sort(nums, l, right);
         }
+
     }
 }

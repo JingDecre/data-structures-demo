@@ -55,6 +55,7 @@ public class OpenLock {
                 if (target.equals(temp)) {
                     return step;
                 }
+                visited.add(temp);
                 for (int i = 0; i < passwordLength; i++) {
                     temp2 = plusOne(temp, i);
                     if (!visited.contains(temp2)) {

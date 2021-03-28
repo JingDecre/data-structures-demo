@@ -108,20 +108,23 @@ public class CoinsDemo {
      * @return
      */
     private static int dp3(int[] coins, int amount) {
-        int[] minArr = new int[amount + 1];
-        Arrays.fill(minArr, amount + 1);
+        if (amount == 0) return amount;
+        int[] array = new int[amount + 1];
+        Arrays.fill(array, amount + 1);
         // base case
-        minArr[0] = 0;
-        // 外层 for 循环在遍历所有状态的所有取值
-        for (int i = 0; i < minArr.length; i++) {
-            // 内层 for 循环在求所有选择的最小值
+        array[0] = 0;
+        // 数组下标表示金额，对应的value表示需要的硬币个数
+        for (int i = 1; i < amount + 1; i++) {
             for (int coin: coins) {
-                // 子问题无解，跳过
-                if (i- coin < 0) continue;
-
-                minArr[i] = Math.min(minArr[i], 1 + minArr[i - coin]);
+                // 负数无意义，跳过
+                if (i - coin < 0) continue;
+                // 距离当前i下标（金额）间隔coin步数的最少硬币数
+                int temp = array[i - coin];
+                array[i] = Math.min(array[i], temp + 1);
             }
         }
-        return  (minArr[amount] == amount + 1) ? -1: minArr[amount];
+
+        return (array[amount] == amount + 1) ? -1 : array[amount];
+
     }
 }
