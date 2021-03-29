@@ -60,11 +60,10 @@ public class PerfectBinaryTree {
      * @param right
      */
     private static void contactTwoNode(Node left, Node right) {
-        if (left == null || right == null) return;
-        left.next = right;
+       if (left == null || right == null) return;
+        left.next = right.next;
         contactTwoNode(left.left, left.right);
         contactTwoNode(right.left, right.right);
-        // 跨越父节点拼接
         contactTwoNode(left.right, right.left);
     }
 

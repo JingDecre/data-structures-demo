@@ -32,38 +32,38 @@ public class MergeSort {
     private static void merge(int[] nums, int left, int mid, int right, int[] tempArr) {
         int l = left;
         int r = mid + 1;
-
-        int t = 0;
+        // 临时数组每次都从0下标开始
+        int index = 0;
+        // 当某一个不满足时，说明有一边已经排序完成了
         while (l <= mid && r <= right) {
             if (nums[l] <= nums[r]) {
-                tempArr[t] = nums[l];
+                tempArr[index] = nums[l];
                 l++;
-                t++;
-            } else {
-                tempArr[t] = nums[r];
+                index++;
+            }
+            if (nums[r] <= nums[l]) {
+                tempArr[index] = nums[r];
                 r++;
-                t++;
+                index++;
             }
         }
+        // 剩余左边的加入临时数组
         while (l <= mid) {
-            tempArr[t] = nums[l];
+            tempArr[index] = nums[l];
             l++;
-            t++;
+            index++;
         }
-
+        // 剩余右边的加入临时数组
         while (r <= right) {
-            tempArr[t] = nums[r];
+            tempArr[index] = nums[r];
             r++;
-            t++;
+            index++;
         }
-
-        t = 0;
-        int tempLeft = left;
-        while (tempLeft <= right) {
-            nums[tempLeft] = tempArr[t];
-            tempLeft++;
-            t++;
+        // 将有序临时数组的数据替换原始数组left->right下标范围的数据
+        index = 0;
+        for (int i = left; i<= right; i++) {
+            nums[i] = tempArr[index];
+            index++;
         }
-
     }
 }

@@ -29,6 +29,7 @@ public class QuickSort {
      * @param right 有边界
      */
     private static void sort(int[] nums, int left, int right) {
+        // 1、递归循环退出条件
         if (left > right) {
             return;
         }
@@ -36,6 +37,7 @@ public class QuickSort {
         int r = right;
         int middleIndex = left + (right - left) / 2;
         int middleVal = nums[middleIndex];
+
         while (l < r) {
             while (nums[l] < middleVal) {
                 l++;
@@ -43,30 +45,34 @@ public class QuickSort {
             while (nums[r] > middleVal) {
                 r--;
             }
-            if (r <= l) {
+            // 这里要大于等于
+            if (l >= r) {
                 break;
             }
+            // 相对于middleIndex左边
             int temp = nums[l];
             nums[l] = nums[r];
             nums[r] = temp;
-
+            // l与中间值相等，是r--  ! !
             if (nums[l] == middleVal) {
                 r--;
             }
+            // r与中间值相等，是l++  ! !
             if (nums[r] == middleVal) {
                 l++;
             }
         }
-        // 防止死循环
+        // 防止死循环，递归循环退出条件在方法入口处
         if (l == r) {
             l++;
             r--;
         }
-        if (r > left) {
-            sort(nums, left, r);
-        }
+
         if (l < right) {
             sort(nums, l, right);
+        }
+        if (left < r) {
+            sort(nums, left, r);
         }
 
     }
