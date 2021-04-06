@@ -1,5 +1,7 @@
 package com.decre.data.mathematics.mathematicsdemo.binarytree;
 
+import java.util.Arrays;
+
 /**
  * @className: BuildTreeByPreAndMid
  * @description: 根据前序和中序遍历构造二叉树（105 题）
@@ -43,49 +45,20 @@ public class BuildTreeByPreAndMid {
      * @return
      */
     private static Node buildTree(int[] preorder, int[] inorder) {
-        return build(preorder, 0, preorder.length - 1,
-                inorder, 0, inorder.length - 1);
-    }
-
-    /**
-     * 核心计算逻辑
-     *
-     * @param preorder
-     * @param preStart
-     * @param preEnd
-     * @param inorder
-     * @param inStart
-     * @param inEnd
-     * @return
-     */
-    private static Node build(int[] preorder, int preStart, int preEnd,
-                       int[] inorder, int inStart, int inEnd) {
-        // 递归终止条件
-        if (preStart > preEnd) {
+        if (preorder.length == 0 || inorder.length == 0) {
             return null;
         }
-        // 前序遍历的第一个节点是根节点
-        int rootVal = preorder[preStart];
-        // 中序遍历等于前序遍历根节点的下标
-        int index = 0;
-        for (int i = inStart; i <= inEnd; i++) {
-            if (rootVal == inorder[i]) {
-                index = i;
+        // 前序遍历的第一个就是当前节点
+        Node root = new Node(preorder[0]);
+        for (int i = 0; i < inorder.length; i++) {
+            // 中序遍历等于前序遍历第一个节点的下标，往左即为左子树，往右即为右子树
+            if (inorder[i] == preorder[0]) {
+                root.left = buildTree(Arrays.copyOfRange(preorder, 1, i + 1), Arrays.copyOfRange(inorder, 0, i));
+                root.right = buildTree(Arrays.copyOfRange(preorder, i + 1, preorder.length), Arrays.copyOfRange(inorder, i + 1, inorder.length));
                 break;
             }
+
         }
-        // 当前节点
-        Node root = new Node(rootVal);
-        // 左子树节点大小,中序遍历的左子树节点大小，同时也是前序遍历的左子树大小
-        int leftSize = index - inStart;
-
-        root.left = build(preorder, preStart + 1, preStart + leftSize,
-                inorder, inStart, index - 1);
-
-        root.right = build(preorder, preStart + leftSize + 1, preEnd,
-                inorder, index + 1, inEnd);
-
         return root;
-
     }
 }
